@@ -104,7 +104,7 @@ export const Projects = () => {
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-[#2a2a36] p-3 rounded-full hover:bg-accent hover:text-black transition-colors"
+                          className="bg-[#2a2a36] p-3 rounded-full hover:bg-accent hover:text-black transition-all duration-300"
                         >
                           <Github size={20} />
                         </a>
@@ -112,7 +112,7 @@ export const Projects = () => {
                           href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-[#2a2a36] p-3 rounded-full hover:bg-accent hover:text-black transition-colors"
+                          className="bg-[#2a2a36] p-3 rounded-full hover:bg-accent hover:text-black transition-all duration-300"
                         >
                           <ArrowUpRight size={20} />
                         </a>
