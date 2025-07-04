@@ -18,6 +18,15 @@ export const Home = () => {
   const imageRef = useRef<HTMLPictureElement>(null);
   const borderRef = useRef<HTMLDivElement>(null);
 
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/cv-david-rivas.pdf'; // Ruta del archivo en public
+    link.download = 'CV-David-Rivas.pdf'; // Nombre del archivo al descargar
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -105,47 +114,56 @@ export const Home = () => {
           paginas web profesionales.
         </p>
         <div className="relative flex justify-center items-center lg:hidden mb-10 mt-6">
-  {/* Borde giratorio */}
-  <motion.div
-    ref={borderRef}
-    animate={{ rotate: 360 }}
-    transition={{
-      repeat: Infinity,
-      duration: 10,
-      ease: "linear",
-      velocity: 200,
-    }}
-    className="absolute w-[360px] h-[360px] rounded-full border-4 border-dashed border-accent"
-  />
+          {/* Borde giratorio */}
+          <motion.div
+            ref={borderRef}
+            animate={{ rotate: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 10,
+              ease: "linear",
+              velocity: 200,
+            }}
+            className="absolute w-[360px] h-[360px] rounded-full border-4 border-dashed border-accent"
+          />
 
-  {/* Imagen circular centrada */}
-  <picture ref={imageRef} className="relative w-[340px] h-[340px] rounded-full overflow-hidden">
-    <img
-
-      src="/perfil.webp"
-      alt="David Rivas"
-      className="w-full h-full object-cover"
-    />
-  </picture>
-</div>
+          {/* Imagen circular centrada */}
+          <picture
+            ref={imageRef}
+            className="relative w-[340px] h-[340px] rounded-full overflow-hidden"
+          >
+            <img
+              src="/perfil.webp"
+              alt="David Rivas"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+        </div>
 
         <div
           ref={buttonsRef}
           className="flex flex-col g-4 py justify-center items-center lg:flex-row lg:items-center lg:justify-start lg:gap-8"
         >
-          <button className="border-2 w-fit border-accent text-accent rounded-4xl p-4 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
+          <button className="border-2 w-fit border-accent text-accent rounded-4xl p-4 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black"
+          onClick={downloadCV}>
             Descargar HV
           </button>
           <div className="flex justify-center gap-x-5 py-5">
-            <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
-              <Github />
-            </button>
-            <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
-              <Linkedin />
-            </button>
-            <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
-              <Mail />
-            </button>
+            <a href="https://github.com/Drivasx" target="_blank">
+              <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
+                <Github />
+              </button>
+            </a>
+            <a href="www.linkedin.com/in/davidm-rivasb" target="_blank">
+              <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
+                <Linkedin />
+              </button>
+            </a>
+            <a href="#contact">
+              <button className="border-2 border-accent rounded-4xl text-accent p-1.5 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black">
+                <Mail />
+              </button>
+            </a>
             <div></div>
           </div>
         </div>
