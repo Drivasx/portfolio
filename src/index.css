@@ -7,6 +7,8 @@
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 
   --color-primary: #1C1C22;
   --color-secondary: #31314D;
@@ -43,6 +45,8 @@
   background-color: #1C1C22;
   color: #ffffff;
   scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Para navegación suave */
+  scrollbar-gutter: stable;
 
   /* --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -81,8 +85,70 @@
 body {
   margin: 0;
   padding: 0;
+  padding-top: 96px; /* Espacio para header fijo */
   font-family: 'JetBrains Mono', monospace;
+  /* Optimizaciones para scroll suave en móvil */
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
 
+/* Header totalmente estático - inmune a GSAP */
+#static-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  z-index: 999999 !important;
+  background-color: #31314D !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  will-change: auto !important;
+  isolation: isolate !important;
+  /* Inmunidad total contra GSAP */
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Todos los elementos del header también estáticos */
+#static-header * {
+  transform: none !important;
+  transition: color 0.3s ease !important; /* Solo permitir cambio de color */
+  animation: none !important;
+  will-change: auto !important;
+}
+
+/* Mejorar rendimiento del header fijo */
+header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  isolation: isolate !important;
+  animation-play-state: unset !important; /* Detiene las animaciones */
+  transition: none !important; /* Elimina transiciones */
+  animation: none !important;
+  transform: translate3d(0, 0, 0) !important;
+  will-change: transform !important;
+  /* Proteger de interferencias GSAP */
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Evitar que las animaciones de secciones afecten el header */
+#projects * {
+  isolation: auto;
+}
+
+#projects {
+  isolation: isolate;
 }
 
 /* @theme inline {

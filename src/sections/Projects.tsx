@@ -47,7 +47,12 @@ export const Projects = () => {
 
     return () => {
       observer.disconnect();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // Solo matar triggers específicos de esta sección, no todos
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger && trigger.trigger.id === 'projects') {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 

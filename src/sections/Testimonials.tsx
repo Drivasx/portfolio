@@ -57,14 +57,16 @@ export const Testimonials = () => {
 
     <AnimatedSection animation="fadeInLeft" delay={0.3} duration={1}>
 
-    <div className="hidden lg:flex flex-row items-top justify-center gap-20">
+    <div className="hidden lg:flex flex-row items-start justify-center gap-8 px-4">
       {testimonials.map((testimonial) => (
-        <Card key={testimonial.id} testimonial={testimonial} />
+        <div key={testimonial.id} className="flex-shrink-0">
+          <Card testimonial={testimonial} />
+        </div>
       ))}
     </div>
 
-    <div className="lg:hidden w-full flex justify-center">
-      <div className="relative w-full max-w-[320px]">
+    <div className="lg:hidden w-full flex justify-center px-8">
+      <div className="relative w-full max-w-[400px]">
         <Carousel 
           className="w-full"
           opts={{
@@ -73,20 +75,17 @@ export const Testimonials = () => {
           }}
           plugins={[
             Autoplay({
-              delay: 2000,
+              delay: 3000,
             }),
           ]}
         >
-          <div className="flex flex-col gap-8">
-            <CarouselContent className="pt-16">
-              {testimonials.map((testimonial) => (
-                <CarouselItem key={testimonial.id} className="flex justify-center">
-                  <Card testimonial={testimonial} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-          </div>
+          <CarouselContent className="pt-0 -ml-2">
+            {testimonials.map((testimonial) => (
+              <CarouselItem key={testimonial.id} className="pl-2 flex justify-center">
+                <Card testimonial={testimonial} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
         </Carousel>
       </div>
     </div>

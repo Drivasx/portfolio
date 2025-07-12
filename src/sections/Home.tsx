@@ -20,70 +20,96 @@ export const Home = () => {
 
   const downloadCV = () => {
     const link = document.createElement('a');
-    link.href = '/cv-david-rivas.pdf'; // Ruta del archivo en public
-    link.download = 'CV-David-Rivas.pdf'; // Nombre del archivo al descargar
+    link.href = '/cv-david-rivas.pdf'; 
+    link.download = 'CV-David-Rivas.pdf'; 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   useEffect(() => {
+    // Detectar si es móvil para optimizar animaciones
+    const isMobile = window.innerWidth < 768;
+    
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#home",
-        start: "top 80%",
-        end: "bottom 20%",
+        start: "top 90%", // Más permisivo en móvil
+        end: "bottom 10%",
         toggleActions: "play none none reverse",
+        // Optimizaciones para móvil
+        invalidateOnRefresh: true,
+        refreshPriority: -1,
+        fastScrollEnd: true,
       },
     });
 
+    // Animaciones más suaves para móvil
+    const duration = isMobile ? 0.8 : 1;
+    const ease = isMobile ? "power1.out" : "power2.out";
+
     tl.fromTo(
       titleRef.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
+      { opacity: 0, y: isMobile ? 30 : 50 },
+      { opacity: 1, y: 0, duration, ease }
     );
 
     tl.fromTo(
       subtitleRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+      { opacity: 0, y: isMobile ? 20 : 30 },
+      { opacity: 1, y: 0, duration: duration * 0.8, ease },
       "-=0.5"
     );
 
     tl.fromTo(
       descriptionRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+      { opacity: 0, y: isMobile ? 20 : 30 },
+      { opacity: 1, y: 0, duration: duration * 0.8, ease },
       "-=0.3"
     );
 
     if (buttonsRef.current?.children) {
       tl.fromTo(
         buttonsRef.current.children,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: isMobile ? 15 : 20 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
+          duration: duration * 0.6,
+          stagger: isMobile ? 0.05 : 0.1,
+          ease,
         },
         "-=0.2"
       );
     }
 
-    tl.fromTo(
-      [imageRef.current, borderRef.current],
-      { opacity: 0, scale: 0.8, rotation: -5 },
-      {
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1.2,
-        ease: "back.out(1.7)",
-      },
-      "-=0.8"
-    );
+    // Animación de imagen más simple en móvil
+    if (isMobile) {
+      tl.fromTo(
+        [imageRef.current, borderRef.current],
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "power1.out",
+        },
+        "-=0.6"
+      );
+    } else {
+      tl.fromTo(
+        [imageRef.current, borderRef.current],
+        { opacity: 0, scale: 0.8, rotation: -5 },
+        {
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1.2,
+          ease: "back.out(1.7)",
+        },
+        "-=0.8"
+      );
+    }
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -120,17 +146,18 @@ export const Home = () => {
             animate={{ rotate: 360 }}
             transition={{
               repeat: Infinity,
-              duration: 10,
+              duration: 12, // Más lento en móvil para mejor rendimiento
               ease: "linear",
-              velocity: 200,
             }}
             className="absolute w-[360px] h-[360px] rounded-full border-4 border-dashed border-accent"
+            style={{ willChange: 'transform' }} // Optimización
           />
 
           {/* Imagen circular centrada */}
           <picture
             ref={imageRef}
             className="relative w-[340px] h-[340px] rounded-full overflow-hidden"
+            style={{ willChange: 'transform' }} // Optimización
           >
             <img
               src="/perfil.webp"
@@ -169,7 +196,7 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="hidden lg:flex justify-center items-center lg:mr-20 order-2">
+      <div className="hidden lg:flex justify-center items-center lg:mr-20 2xl:mr-40 order-2">
         <motion.div
           ref={borderRef}
           animate={{ rotate: 360 }}
@@ -177,14 +204,15 @@ export const Home = () => {
             repeat: Infinity,
             duration: 10,
             ease: "linear",
-            velocity: 100,
           }}
-          className="absolute w-[760px] h-[760px] rounded-full border-4 border-dashed border-accent"
+          className="absolute w-[320px] h-[320px] xl:w-[500px] xl:h-[500px] 2xl:w-[700px] 2xl:h-[700px] rounded-full border-4 border-dashed border-accent"
+          style={{ willChange: 'transform' }} // Optimización
         />
 
         <picture
           ref={imageRef}
-          className="relative w-[736px] h-[736px] rounded-full overflow-hidden"
+          className="relative w-[300px] h-[300px] xl:w-[480px] xl:h-[480px] 2xl:w-[680px] 2xl:h-[680px] rounded-full overflow-hidden"
+          style={{ willChange: 'transform' }} // Optimización
         >
           <img
             src="/perfil.webp"

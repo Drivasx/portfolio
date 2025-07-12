@@ -1,3 +1,4 @@
+"use client";
 import { AlignRight } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useEffect, useState } from "react";
@@ -15,7 +16,10 @@ export const Header = () => {
             }
           });
         },
-        { threshold: 0.5, rootMargin: "-100px 0px" }
+        { 
+          threshold: 0.3, // Menos sensible 
+          rootMargin: "-80px 0px", // Mejor para móvil
+        }
       );
 
       const sections = ["home", "about", "projects", "testimonials", "contact"];
@@ -35,7 +39,23 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed min-w-full bg-secondary text-white p-4 min-h-24 items-center flex justify-between lg:px-[60px] z-10">
+    <div 
+      className="bg-secondary text-white p-4 min-h-24 items-center flex justify-between lg:px-[60px]" 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: '100vw',
+        zIndex: 999999,
+        backgroundColor: '#31314D',
+        transform: 'none',
+        transition: 'none',
+        animation: 'none',
+        willChange: 'auto'
+      }}
+      id="static-header"
+    >
       <a href="#home">
         <h1 className="text-5xl">
           David <span className="text-accent">.</span>{" "}
@@ -85,22 +105,34 @@ export const Header = () => {
         </SheetTrigger>
         <SheetContent side="right" className="w-3/4 sm:w-1/2 bg-primary">
           <nav className="flex flex-col mt-20 gap-4 items-center h-full">
-            <a href="#home" className={activeSection === "home" ? "text-lg text-accent" : "text-lg"}>
-              Inicio
-            </a>
-            <a href="#about" className={activeSection === "about" ? "text-lg text-accent" : "text-lg"}>
-              Servicios
-            </a>
-            <a href="#projects" className={activeSection === "projects" ? "text-lg text-accent" : "text-lg"}>
-              Proyectos
-            </a>
-            <a href="#testimonials" className={activeSection === "testimonials" ? "text-lg text-accent" : "text-lg"}>
-              Reseñas
-            </a>
-            <a href="#contact" className={activeSection === "contact" ? "text-lg text-accent" : "text-lg"}>Contáctame</a>
+            <SheetTrigger asChild>
+              <a href="#home" className={activeSection === "home" ? "text-lg text-accent" : "text-lg hover:text-accent transition-colors"}>
+                Inicio
+              </a>
+            </SheetTrigger>
+            <SheetTrigger asChild>
+              <a href="#about" className={activeSection === "about" ? "text-lg text-accent" : "text-lg hover:text-accent transition-colors"}>
+                Servicios
+              </a>
+            </SheetTrigger>
+            <SheetTrigger asChild>
+              <a href="#projects" className={activeSection === "projects" ? "text-lg text-accent" : "text-lg hover:text-accent transition-colors"}>
+                Proyectos
+              </a>
+            </SheetTrigger>
+            <SheetTrigger asChild>
+              <a href="#testimonials" className={activeSection === "testimonials" ? "text-lg text-accent" : "text-lg hover:text-accent transition-colors"}>
+                Reseñas
+              </a>
+            </SheetTrigger>
+            <SheetTrigger asChild>
+              <a href="#contact" className={activeSection === "contact" ? "text-lg text-accent" : "text-lg hover:text-accent transition-colors"}>
+                Contáctame
+              </a>
+            </SheetTrigger>
           </nav>
         </SheetContent>
       </Sheet>
-    </header>
+    </div>
   );
 };
