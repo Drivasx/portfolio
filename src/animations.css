@@ -1,0 +1,115 @@
+
+
+/* Mejoras para Sheet/Modal */
+[data-slot="sheet-overlay"] {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+[data-slot="sheet"] {
+  overflow: hidden;
+}
+
+/* Evitar scroll del body cuando el sheet está abierto */
+body:has([data-state="open"]) {
+  overflow: hidden;
+}
+
+/* Animación de bounce suave para botones */
+@keyframes gentle-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Animación de pulso para el borde */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--accent-color), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--accent-color), 0);
+  }
+}
+
+/* Animación de float para elementos */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Clases de utilidad para las animaciones */
+.animate-gentle-bounce {
+  animation: gentle-bounce 2s infinite;
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Mejora para las transiciones de hover */
+.smooth-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* Animación de aparición con escala */
+.scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gradiente animado para textos especiales */
+.gradient-text {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient 4s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

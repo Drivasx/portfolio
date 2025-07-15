@@ -17,7 +17,7 @@ export const Header = () => {
           });
         },
         { 
-          threshold: 0.3, // Menos sensible 
+          threshold: 0.3, 
           rootMargin: "-80px 0px", // Mejor para móvil
         }
       );
@@ -47,14 +47,8 @@ export const Header = () => {
         left: 0,
         right: 0,
         width: '100vw',
-        zIndex: 999999,
-        backgroundColor: '#31314D',
-        transform: 'none',
-        transition: 'none',
-        animation: 'none',
-        willChange: 'auto'
+        zIndex: 10
       }}
-      id="static-header"
     >
       <a href="#home">
         <h1 className="text-5xl">
