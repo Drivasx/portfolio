@@ -24,7 +24,7 @@ export const Testimonials = () => {
       <div 
         data-aos="fade-right"
         data-aos-delay="400"
-        className="hidden lg:flex flex-row items-start justify-center gap-8 px-4"
+        className="hidden lg:flex flex-row items-start justify-center gap-24 px-4"
       >
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="flex-shrink-0">

@@ -17,7 +17,7 @@ export const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center pt-14 gap-8 mx-10 lg:flex-row lg:items-start lg:justify-between lg:mx-20 lg:gap-16 lg:pt-20"
+      className="min-h-screen flex flex-col items-center justify-center pt-14 gap-8 mx-10 lg:flex-row lg:items-start lg:justify-between lg:mx-20 lg:gap-16 lg:pt-20 lg:mt-16"
     >
       <div className="flex flex-col items-center justify-center gap-4 lg:items-start py-14 lg:gap-12 lg:w-1/2 lg:text-left order-1">
         <p 
@@ -70,8 +70,6 @@ export const Home = () => {
           className="flex flex-col g-4 py justify-center items-center lg:flex-row lg:items-center lg:justify-start lg:gap-8"
         >
           <button 
-            data-aos="fade-right"
-            data-aos-delay="600"
             className="border-2 w-fit border-accent text-accent rounded-4xl p-4 cursor-pointer transition-colors duration-300 hover:bg-accent hover:text-black smooth-hover"
             onClick={downloadCV}
           >

@@ -97,7 +97,7 @@ export const Projects = () => {
 
             <div 
               data-aos="fade-up"
-              data-aos-delay="600"
+              data-aos-delay="400"
               className="flex gap-4 mt-4 lg:mt-0"
             >
               <CarouselPrevious className="static bg-transparent hover:bg-accent hover:text-black transition-all cursor-pointer border-accent text-accent" />

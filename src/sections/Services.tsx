@@ -20,11 +20,11 @@ export const Services = () => {
               key={service.id}
               data-aos="fade-up"
               data-aos-delay={100 + (index * 200)}
-              className="h-auto gap-14 hover:scale-105 transition-all duration-300 hover:text-accent group smooth-hover" 
+              className="h-auto gap-14 hover:scale-[1.02] transition-transform duration-700 ease-out hover:text-accent group smooth-hover" 
             >
-              <h2 className="text-xl lg:text-3xl mb-2 font-bold">0{service.id}</h2>
-              <h2 className="text-xl lg:text-3xl font-bold mb-4">{service.title}</h2>
-              <p className="text-base lg:text-lg text-gray-400 group-hover:text-accent transition-colors duration-300">
+              <h2 className="text-xl lg:text-3xl mb-2 font-bold transition-colors duration-700 ease-out">0{service.id}</h2>
+              <h2 className="text-xl lg:text-3xl font-bold mb-4 transition-colors duration-700 ease-out">{service.title}</h2>
+              <p className="text-base lg:text-lg text-gray-400 group-hover:text-accent transition-colors duration-700 ease-out">
                 {service.description}
               </p>
               <hr className="my-6 border-gray-300" />
